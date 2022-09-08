@@ -1,2 +1,45 @@
 
-<div class="text-lg text-purple-500">hello</div>
+<div class="flex items-center justify-center h-screen">
+  <div class="border border-indigo-600 rounded max-w-2xl h-96">
+
+    <div class="flex flex-col justify-between">
+
+      <div class="flex justify-between">
+        <div>
+          <div class="text-2xl">Partly cloudy</div>
+          <div class="">Chicago, IL</div>
+        </div>
+        <div>
+          °C
+        </div>
+      </div>
+
+      <div class="flex justify-between">
+        <% @hourly.each do |time, hour|%>
+          <div>
+            <div><%= time %></div>
+            <img src="/icons/<%= hour["icon"] %>.svg">
+            <div class="text-2xl"><%= hour["temperature"]["celsius"] %></div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="flex">
+        <div class="">Humidity: <span class="font-semibold">65%</span></div>
+        <div class="">Wind: <span class="font-semibold">7 MPH NE</span></div>
+      </div>
+
+      <div class="flex justify-between bg-slate-300 h-32 w-full">
+        <% @daily.each do |date, day|%>
+          <div>
+            <div><%= day["weekday"] %></div>
+            <img src="/icons/<%= day["icon"] %>.svg">
+            <div class="text-2xl"><%= day["max_temperature"]["celsius"] %></div>
+            <div class="text-2xl"><%= day["min_temperature"]["celsius"] %></div>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
